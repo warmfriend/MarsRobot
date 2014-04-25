@@ -3,7 +3,7 @@ var ControlCenter = require("../models/ControlCenter");
 var Robot = require("../models/Robot");
 
 // ===========================================================================
-// MarsRobotApp 
+// Controller
 // ===========================================================================
 var Controller = function() {
 
