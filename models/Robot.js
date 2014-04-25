@@ -47,7 +47,7 @@ util.inherits(RobotCommandForward, RobotCommandBase);
 // RobotCommandController : analyze string and create RobotCommand.
 // ===========================================================================
 
-// 로봇 명령 타입
+// robot command type
 var ROBOTCOMMAND = {
 	L : "L",
 	R : "R",
