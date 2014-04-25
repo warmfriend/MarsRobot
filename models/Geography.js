@@ -1,3 +1,6 @@
+// ===========================================================================
+// Geography
+// ===========================================================================
 var Geography = function() {
 
 };
@@ -95,19 +98,19 @@ Geography.Direction = function(directionStr) {
 	};
 
 	Object.defineProperty(this,"directionType",{
-    	get: function() { return _directionType; },
+    		get: function() { return _directionType; },
   	});
   	Object.defineProperty(this,"angle",{
-    	get: function() { return _angle; },
-    	set: function(angle) { 
-    		var tmpAngle = setAngle(angle); 
-    		var tmpDir = angleToDirection(tmpAngle);
-    		if(tmpDir)
-    		{
-    			_directionType = tmpDir;
-    			_angle = tmpAngle;
-    		}
-    	}
+    		get: function() { return _angle; },
+    		set: function(angle) { 
+	    		var tmpAngle = setAngle(angle); 
+	    		var tmpDir = angleToDirection(tmpAngle);
+	    		if(tmpDir)
+	    		{
+	    			_directionType = tmpDir;
+	    			_angle = tmpAngle;
+	    		}
+	    	}
   	});
 };
 

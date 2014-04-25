@@ -1,5 +1,8 @@
 var Geography = require("./Geography");
 
+// ===========================================================================
+// Message 
+// ===========================================================================
 var Message = function(point, directionType) {
 	var _point = point;
 	var _directionType = directionType;

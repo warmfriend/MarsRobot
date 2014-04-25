@@ -4,13 +4,14 @@ var Geography = require("./Geography");
 var Point = Geography.Point;
 var DIRECTIONTYPE = Geography.DIRECTIONTYPE;
 
+// ===========================================================================
+// MarsSurface 
+// ===========================================================================
 var MarsSurface = function(width, height) {
 
-	// private ====================================================
 	var _width = MarsSurface.MAX_WIDTH < width ? MarsSurface.MAX_WIDTH : width;
 	var _height = MarsSurface.MAX_HEIGHT < height ? MarsSurface.MAX_HEIGHT : height;
 
-	// public ====================================================
 	this.getNewPoint = function(point, directionType, distanceInt) {
 		
 		var returnPoint = new Point(point.x, point.y);
@@ -40,10 +41,10 @@ var MarsSurface = function(width, height) {
 	};
 
 	Object.defineProperty(this,"width",{
-    	get: function() { return _width; }
+    		get: function() { return _width; }
   	});
   	Object.defineProperty(this,"height",{
-    	get: function() { return _height; }
+    		get: function() { return _height; }
   	});
 };
 

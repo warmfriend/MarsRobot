@@ -1,25 +1,25 @@
 var MarsRobotApp = require("./MarsRobotApp");
 
 // ===========================================================================
-// unittest : add method tested.
+// unittest : add testing method.
 // ===========================================================================
 var unittest = {
 
 	test1 : function() {
-		var inputString = "5 3 \n" +
-				"1 1 E \n" +
-				"RFRFRFRF ";
-		MarsRobotApp.play(inputString);
+		var inputString = "5 3\n" +
+				"1 1 E\n" +
+				"RFRFRFRF\n" +
+				"3 2 N\n" +
+				"FRRFLLFFRRFLL\n" +
+				"0 3 W\n" +
+				"LLFFFLFLFL";
+		MarsRobotApp.play(inputString);	
 	},
 
 	test2 : function() {
-		var inputString = "5 3 \n" +
-				"1 1 E \n" +
-				"RFRFRFRF \n" +
-				"3 2 N \n" +
-				"FRRFLLFFRRFLL \n" +
-				"0 3 W \n" +
-				"LLFFFLFLFL ";
+		var inputString = "5 3\n" +
+				"1 1 E\n" +
+				"FFKKFAADD\n";
 		MarsRobotApp.play(inputString);		
 	},
 }

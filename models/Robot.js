@@ -9,7 +9,7 @@ var Direction = Geography.Direction;
 var DIRECTIONTYPE = Geography.DIRECTIONTYPE;
 
 // ===========================================================================
-// 로봇 명령 클래스 : 로봇을 조종하는 로직을 구현한다.
+// RobotCommand 
 // ===========================================================================
 var RobotCommandBase = function(robot) {
 	this._robot = robot;
@@ -44,7 +44,7 @@ util.inherits(RobotCommandRight, RobotCommandBase);
 util.inherits(RobotCommandForward, RobotCommandBase);
 
 // ===========================================================================
-// 로봇 명령 제어기 : 문자열 명령을 분석하고 로봇 명령을 배열로 나엻한다.
+// RobotCommandController : analyze string and create RobotCommand.
 // ===========================================================================
 
 // 로봇 명령 타입
@@ -62,29 +62,29 @@ var RobotCommandController = function(robot) {
 			return false;
 
 		var commandCharArray = commandStr.split("");
-		var commandObjectArray = new Array();
+		var robotCommandArray = new Array();
 
 		commandCharArray.forEach(function(commandChar){
 			switch(commandChar)
 			{
 				case ROBOTCOMMAND.L :
-					commandObjectArray.push(new RobotCommandLeft(_robot));
+					robotCommandArray.push(new RobotCommandLeft(_robot));
 					break;
 				case ROBOTCOMMAND.R :
-					commandObjectArray.push(new RobotCommandRight(_robot));
+					robotCommandArray.push(new RobotCommandRight(_robot));
 					break;
 				case ROBOTCOMMAND.F :
-					commandObjectArray.push(new RobotCommandForward(_robot));
+					robotCommandArray.push(new RobotCommandForward(_robot));
 					break;
 			}
 		});
 
-		return commandObjectArray;
+		return robotCommandArray;
 	};
 };
 
 // ===========================================================================
-// 로봇 : 화성 로봇 
+// Robot
 // ===========================================================================
 var Robot = function(marsSurface, controlCenter) {
 	var _commandController = new RobotCommandController(this);
@@ -112,12 +112,12 @@ var Robot = function(marsSurface, controlCenter) {
 		if(typeof commandStr !== 'string')
 			return false;
 
-		var commandObjectArray = _commandController.excute(commandStr);
+		var robotCommandArray = _commandController.excute(commandStr);
 
-		for(var i = 0; i < commandObjectArray.length; i++)
+		for(var i = 0; i < robotCommandArray.length; i++)
 		{
-			var commandObject = commandObjectArray[i];
-			commandObject.excute();
+			var robotCommand = robotCommandArray[i];
+			robotCommand.excute();
 
 			if(!_isConnected)
 				return false;
@@ -152,10 +152,9 @@ var Robot = function(marsSurface, controlCenter) {
 
 	this.report = function() {
 		var reportStr = this._point.x + " "
-						+ this._point.y + " "
-						+ this._direction.directionType + " "
-						+ (_isConnected ? "" : "LOST");
-
+				+ this._point.y + " "
+				+ this._direction.directionType + " "
+				+ (_isConnected ? "" : "LOST");
 		console.log(reportStr);
 	};
 };

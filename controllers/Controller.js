@@ -9,8 +9,8 @@ var Controller = function() {
 
 	var _marsSurface = null;
 	var _controlCenter = null;
-	var _robotArray = new Array();
 	var _actingRobot = null;
+	var _robotArray = new Array();
 
 	this.init = function(width, height) {
 		_marsSurface = new MarsSurface(width, height);
@@ -33,6 +33,7 @@ var Controller = function() {
 			return;
 
 		_actingRobot.action(commandStr);
+		_actingRobot = null;
 	};
 
 	this.report = function() {

@@ -1,6 +1,9 @@
 var Geography = require("./Geography");
 var Message = require("./Message");
 
+// ===========================================================================
+// ControlCenter : manage robot's activity.
+// ===========================================================================
 var ControlCenter = function() {
 
 	var _messageArray = new Array();
