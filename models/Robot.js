@@ -1,3 +1,4 @@
+var RobotCommandController = require("./RobotCommandController");
 var Geography = require("./Geography");
 var MarsSurface = require("./MarsSurface");
 var ControlCenter = require("./ControlCenter");
@@ -9,85 +10,10 @@ var Direction = Geography.Direction;
 var DIRECTIONTYPE = Geography.DIRECTIONTYPE;
 
 // ===========================================================================
-// RobotCommand 
-// ===========================================================================
-var RobotCommandBase = function(robot) {
-	this._robot = robot;
-	this.excute = function() {
-
-	};
-};
-
-var RobotCommandLeft = function(robot) {
-	RobotCommandBase.call(this,robot);
-	this.excute = function() {
-		this._robot.rotate(-90);
-	}
-}
-
-var RobotCommandRight = function(robot) {
-	RobotCommandBase.call(this,robot);
-	this.excute = function() {
-		this._robot.rotate(90);
-	}
-}
-
-var RobotCommandForward = function(robot) {
-	RobotCommandBase.call(this,robot);
-	this.excute = function() {
-		this._robot.move(1);
-	}
-}
-
-util.inherits(RobotCommandLeft, RobotCommandBase);
-util.inherits(RobotCommandRight, RobotCommandBase);
-util.inherits(RobotCommandForward, RobotCommandBase);
-
-// ===========================================================================
-// RobotCommandController : analyze string and create RobotCommand.
-// ===========================================================================
-
-// robot command type
-var ROBOTCOMMAND = {
-	L : "L",
-	R : "R",
-	F : "F"
-};
-
-var RobotCommandController = function(robot) {
-	var _robot = robot;
-
-	this.excute = function (commandStr) {
-		if(typeof commandStr !== 'string')
-			return false;
-
-		var commandCharArray = commandStr.split("");
-		var robotCommandArray = new Array();
-
-		commandCharArray.forEach(function(commandChar){
-			switch(commandChar)
-			{
-				case ROBOTCOMMAND.L :
-					robotCommandArray.push(new RobotCommandLeft(_robot));
-					break;
-				case ROBOTCOMMAND.R :
-					robotCommandArray.push(new RobotCommandRight(_robot));
-					break;
-				case ROBOTCOMMAND.F :
-					robotCommandArray.push(new RobotCommandForward(_robot));
-					break;
-			}
-		});
-
-		return robotCommandArray;
-	};
-};
-
-// ===========================================================================
 // Robot
 // ===========================================================================
 var Robot = function(marsSurface, controlCenter) {
-	var _commandController = new RobotCommandController(this);
+	var _commandController = new RobotCommandController();
 	var _marsSurface = marsSurface;
 	var _controlCenter = controlCenter;
 	var _isConnected = true;
@@ -117,7 +43,8 @@ var Robot = function(marsSurface, controlCenter) {
 		for(var i = 0; i < robotCommandArray.length; i++)
 		{
 			var robotCommand = robotCommandArray[i];
-			robotCommand.excute();
+			if(robotCommand && typeof robotCommand === "function")
+				robotCommand(this);
 
 			if(!_isConnected)
 				return false;
