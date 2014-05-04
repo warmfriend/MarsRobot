@@ -7,40 +7,40 @@ var Robot = require("../models/Robot");
 // ===========================================================================
 var Controller = function() {
 
-	var _marsSurface = null;
-	var _controlCenter = null;
-	var _actingRobot = null;
-	var _robotArray = new Array();
+  var _marsSurface = null;
+  var _controlCenter = null;
+  var _actingRobot = null;
+  var _robotArray = new Array();
 
-	this.init = function(width, height) {
-		_marsSurface = new MarsSurface(width, height);
-		_controlCenter = new ControlCenter();
-	};
+  this.init = function(width, height) {
+    _marsSurface = new MarsSurface(width, height);
+    _controlCenter = new ControlCenter();
+  };
 
-	this.createRobot = function(x, y, directionStr){
-		_actingRobot = new Robot(_marsSurface, _controlCenter);
+  this.createRobot = function(x, y, directionStr){
+    _actingRobot = new Robot(_marsSurface, _controlCenter);
 
-		if(!_actingRobot.setup(parseInt(x), parseInt(y), directionStr))
-			_actingRobot = null;
-		else
-		{	
-			_robotArray.push(_actingRobot);
-		}
-	};
+    if(!_actingRobot.setup(parseInt(x), parseInt(y), directionStr))
+      _actingRobot = null;
+    else
+    { 
+      _robotArray.push(_actingRobot);
+    }
+  };
 
-	this.command = function(commandStr) {
-		if(!_actingRobot)
-			return;
+  this.command = function(commandStr) {
+    if(!_actingRobot)
+      return;
 
-		_actingRobot.action(commandStr);
-		_actingRobot = null;
-	};
+    _actingRobot.action(commandStr);
+    _actingRobot = null;
+  };
 
-	this.report = function() {
-		_robotArray.forEach(function(robot){
-			robot.report();
-		});
-	};
+  this.report = function() {
+    _robotArray.forEach(function(robot){
+      robot.report();
+    });
+  };
 }
 
 module.exports = Controller;

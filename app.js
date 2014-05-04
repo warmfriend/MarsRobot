@@ -5,31 +5,31 @@ var MarsRobotApp = require("./MarsRobotApp");
 // ===========================================================================
 var unittest = {
 
-	test1 : function() {
-		var inputString = "5 3\n" +
-				"1 1 E\n" +
-				"RFRFRFRF\n" +
-				"3 2 N\n" +
-				"FRRFLLFFRRFLL\n" +
-				"0 3 W\n" +
-				"LLFFFLFLFL";
-		MarsRobotApp.play(inputString);	
-	},
+  test1 : function() {
+    var inputString = "5 3\n" +
+        "1 1 E\n" +
+        "RFRFRFRF\n" +
+        "3 2 N\n" +
+        "FRRFLLFFRRFLL\n" +
+        "0 3 W\n" +
+        "LLFFFLFLFL";
+    MarsRobotApp.play(inputString); 
+  },
 
-	test2 : function() {
-		var inputString = "5 3\n" +
-				"1 1 E\n" +
-				"FFKKFAADD\n";
-		MarsRobotApp.play(inputString);		
-	},
+  test2 : function() {
+    var inputString = "5 3\n" +
+        "1 1 E\n" +
+        "FFKKFAADD\n";
+    MarsRobotApp.play(inputString);   
+  },
 }
 
 var index = 0;
 for(var test in unittest) {
-	index++;
+  index++;
 
-	console.log("####### UNIT TEST " + index + " #######\n");
-	unittest[test]();
+  console.log("####### UNIT TEST " + index + " #######\n");
+  unittest[test]();
 
-	console.log("\n");
+  console.log("\n");
 }
